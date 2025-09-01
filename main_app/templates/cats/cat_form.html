@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>{% if object %}Edit Cat{% else %}Add New Cat{% endif %}</h1>
+
+<form method="POST">
+  {% csrf_token %}
+   {{form.as_p}}
+
+  <button type="submit">{{ form.instance.pk|yesno:"Update,Create" }}</button>
+</form>
+
+<a href="{% url 'cat_list' %}" class="btn btn-secondary">Back to Cats</a>
+
+{% endblock %}

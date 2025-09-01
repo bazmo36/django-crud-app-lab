@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>Cats</h1>
+
+<a href="{% url 'cat_create' %}" class="btn">Add New Cat</a>
+
+<ul class="list-group">
+  {% for cat in cats %}
+    <li class="list-group-item">
+      <a href="{% url 'cat_detail' cat.pk %}">{{ cat.name }}</a>
+      <span>
+        <a href="{% url 'cat_update' cat.pk %}" class="btn btn-secondary">Edit</a>
+        <form method='post' action="{% url 'cat_delete' cat.pk %}">
+          {% csrf_token %}
+          <button class="btn btn-danger">Delete</button>
+        </form>
+      </span>
+    </li>
+  {% empty %}
+    <li class="list-group-item">No cats available.</li>
+  {% endfor %}
+</ul>
+{% endblock %}

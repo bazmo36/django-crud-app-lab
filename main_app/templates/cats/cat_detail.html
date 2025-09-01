@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ cat.name }} Details{% endblock %}
+
+{% block content %}
+<h1>{{ cat.name }}</h1>
+
+<p><strong>Breed:</strong> {{ cat.breed }}</p>
+<p><strong>Age:</strong> {{ cat.age }}</p>
+<p><strong>Description:</strong> {{ cat.description }}</p>
+<p><strong>Alive:</strong> {{ cat.is_alive|yesno:"Yes,No" }}</p>
+
+<a href="{% url 'cat_update' cat.pk %}" class="btn btn-secondary">Edit</a>
+<form method='post' action="{% url 'cat_delete' cat.pk %}">
+    {% csrf_token %}
+    <button class="btn btn-danger">Delete</button>
+</form>
+<a href="{% url 'cat_list' %}" class="btn btn-secondary">Back to Cats</a>
+{% endblock %}

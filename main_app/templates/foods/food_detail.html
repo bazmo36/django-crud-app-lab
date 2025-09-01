@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+<h1>{{ food.name }}</h1>
+
+<p><strong>Brand:</strong> {{ food.brand }}</p>
+<p><strong>Description:</strong> {{ food.description }}</p>
+<p><strong>For Cat:</strong> <a href="{% url 'cat_detail' food.cat.pk %}">{{ food.cat.name }}</a></p>
+
+<a href="{% url 'food_update' food.pk %}" class="btn btn-secondary">Edit</a>
+<form method='post' action="{% url 'food_delete' food.pk %}">
+    {% csrf_token %}
+    <button class="btn btn-danger">Delete</button>
+</form>
+<a href="{% url 'food_list' %}" class="btn btn-secondary">Back to Foods</a>
+{% endblock %}

@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>{% if object %}Edit Food{% else %}Add New Food{% endif %}</h1>
+
+<form method="POST">
+  {% csrf_token %}
+  {{form.as_p}}
+  
+   <button type="submit">{{ form.instance.pk|yesno:"Update,Create" }}</button>
+</form>
+
+<a href="{% url 'food_list' %}" class="btn btn-secondary">Back to Foods</a>
+{% endblock %}

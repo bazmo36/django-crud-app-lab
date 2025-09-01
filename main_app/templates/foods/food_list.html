@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+<h1>Foods</h1>
+
+<a href="{% url 'food_create' %}" class="btn">Add New Food</a>
+
+<ul class="list-group">
+  {% for food in foods %}
+    <li class="list-group-item">
+      <a href="{% url 'food_detail' food.pk %}">{{ food.name }}</a> for <strong>{{ food.cat.name }}</strong>
+      <span>
+        <a href="{% url 'food_update' food.pk %}" class="btn btn-secondary">Edit</a>
+        <form method='post' action="{% url 'food_delete' food.pk %}">
+          {% csrf_token %}
+          <button class="btn btn-danger">Delete</button>
+        </form>
+      </span>
+    </li>
+  {% empty %}
+    <li class="list-group-item">No foods available.</li>
+  {% endfor %}
+</ul>
+{% endblock %}
