@@ -8,10 +8,27 @@
     <link rel="stylesheet" href="{% static 'css/styles.css' %}" />
 </head>
 <body>
-    <nav>
-        <a href="{% url 'home' %}">Home</a>
-        <a href="{% url 'cat_list' %}">Cats</a>
-        <a href="{% url 'food_list' %}">Foods</a>
+    <nav class="navbar">
+        <div class="navbar-content">
+            <div class="nav-links">
+                <a href="{% url 'home' %}">Home</a>
+
+                {% if user.is_authenticated %}
+                    <a href="{% url 'cat_list' %}">Cats</a>
+                    <a href="{% url 'food_list' %}">Foods</a>
+                {% else %}
+                    <a href="{% url 'login' %}">Login</a>
+                    <a href="{% url 'signup' %}">Sign Up</a>
+                {% endif %}
+            </div>
+
+            {% if user.is_authenticated %}
+            <form action="/auth/logout/" method="post" class="logout-form">
+                {% csrf_token %}
+                <button class="btn logout-btn">Logout</button>
+            </form>
+            {% endif %}
+        </div>
     </nav>
 
     <div class="container">

@@ -1,11 +1,13 @@
 from django.urls import path
 from .views import (
-    HomeView,
+    HomeView,SignUpView,
     CatListView, CatCreateView, CatDetailView, CatUpdateView, CatDeleteView,
     FoodCreateView, FoodListView, FoodUpdateView, FoodDetailView, FoodDeleteView
 )
 
 urlpatterns = [
+    path("auth/signup/",SignUpView.as_view(), name="signup"),
+
     path('', HomeView.as_view(), name='home'),
 
     # Cat URLs
@@ -21,4 +23,5 @@ urlpatterns = [
     path("foods/<int:pk>/", FoodDetailView.as_view(), name='food_detail'),
     path("foods/<int:pk>/update/", FoodUpdateView.as_view(), name='food_update'),
     path("foods/<int:pk>/delete/", FoodDeleteView.as_view(), name='food_delete'),
+    
 ]

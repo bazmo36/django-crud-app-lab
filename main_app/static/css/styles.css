@@ -138,3 +138,27 @@ form button {
 form button:hover {
   background-color: #2980b9;
 }
+
+
+
+.navbar-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.nav-links a {
+  margin-right: 15px;
+}
+
+.logout-form {
+  margin: 0;
+}
+
+.logout-btn {
+  background-color: #e74c3c;
+}
+
+.logout-btn:hover {
+  background-color: #c0392b;
+}
